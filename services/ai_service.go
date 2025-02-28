@@ -58,5 +58,7 @@ func EstimateCalories(meal string) (float64, error) {
 		return result.Items[0].Calories, nil
 	}
 
+
+	
 	return 0, fmt.Errorf("no data found for meal: %s", meal)
 }
