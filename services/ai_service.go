@@ -9,7 +9,6 @@ import (
 	"os"
 )
 
-// Struct to parse API response
 type NutritionItem struct {
 	Name            string  `json:"name"`
 	Calories        float64 `json:"calories"`
@@ -26,21 +25,18 @@ type AIResponse struct {
 	Items []NutritionItem `json:"items"`
 }
 
-// Function to estimate calories
 func EstimateCalories(meal string) (float64, error) {
 	apiKey := os.Getenv("CALORIE_NINJAS_API_KEY")
 	if apiKey == "" {
 		return 0, fmt.Errorf("API Key is missing! Set CALORIE_NINJAS_API_KEY")
 	}
 
-	// Encode meal properly
 	encodedMeal := url.QueryEscape(meal)
 	apiURL := fmt.Sprintf("https://api.calorieninjas.com/v1/nutrition?query=%s", encodedMeal)
 
-	// Create request
 	req, _ := http.NewRequest("GET", apiURL, nil)
 	req.Header.Set("X-Api-Key", apiKey)
-	req.Header.Set("User-Agent", "Mozilla/5.0") // 🔹 Add User-Agent header
+	req.Header.Set("User-Agent", "Mozilla/5.0")
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
@@ -49,15 +45,15 @@ func EstimateCalories(meal string) (float64, error) {
 	}
 	defer resp.Body.Close()
 
-	// Read response
+	
 	body, _ := io.ReadAll(resp.Body)
-	fmt.Println("🔹 Raw API Response:", string(body)) // Log API response
+	fmt.Println("🔹 Raw API Response:", string(body)) 
 
-	// Parse JSON
+	
 	var result AIResponse
 	json.Unmarshal(body, &result)
 
-	// Check if API returned data
+
 	if len(result.Items) > 0 {
 		return result.Items[0].Calories, nil
 	}

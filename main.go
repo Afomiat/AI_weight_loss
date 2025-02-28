@@ -18,7 +18,6 @@ type MealResponse struct {
 	Calories float64 `json:"calories"`
 }
 
-// Gin handler for estimating calories
 func EstimateCaloriesHandler(c *gin.Context) {
 	var req MealRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -39,13 +38,11 @@ func EstimateCaloriesHandler(c *gin.Context) {
 }
 
 func main() {
-	// Create a Gin router
 	router := gin.Default()
 
-	// Define endpoint
 	router.POST("/estimate_calories", EstimateCaloriesHandler)
 
-	// Start server
+	
 	fmt.Println("🚀 Server running on port 8080...")
 	if err := router.Run(":8080"); err != nil {
 		log.Fatal(err)
