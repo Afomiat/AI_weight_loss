@@ -2,6 +2,7 @@ package controller
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/Afomiat/AI_weight_loss/backend/usecase"
 	"github.com/gin-gonic/gin"
@@ -16,21 +17,7 @@ func GetMeals(c *gin.Context) {
     c.JSON(http.StatusOK, meals)
 }
 
-// func GetMealSuggestion(c *gin.Context) {
-//     dailyCalorieLimitStr := c.Query("dailyCalorieLimit")
-//     dailyCalorieLimit, err := strconv.ParseFloat(dailyCalorieLimitStr, 64)
-//     if err != nil || dailyCalorieLimit <= 0 {
-//         c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid daily calorie limit"})
-//         return
-//     }
 
-//     suggestions, err := usecase.GetMealSuggestion(dailyCalorieLimit)
-//     if err != nil {
-//         c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-//         return
-//     }
-//     c.JSON(http.StatusOK, suggestions)
-// }
 
 func GetCalorieInfo(c *gin.Context) {
     food := c.Query("food")
@@ -44,4 +31,26 @@ func GetCalorieInfo(c *gin.Context) {
         return
     }
     c.JSON(http.StatusOK, calorieInfo)
+}
+
+func GetMealSuggestion(c *gin.Context) {
+	calorieLimit := c.Query("calorie_limit")
+	if calorieLimit == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Calorie limit query parameter is required"})
+		return
+	}
+
+	limit, err := strconv.Atoi(calorieLimit)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid calorie limit"})
+		return
+	}
+
+	meals, err := usecase.GetMealSuggestion(limit)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, meals)
 }
