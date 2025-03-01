@@ -1,11 +1,12 @@
 package ai
 
 import (
-    "net/http"
-    "io/ioutil"
-    "encoding/json"
-    "log"
-    "github.com/Afomiat/AI_weight_loss/backend/config"
+	"encoding/json"
+	"io/ioutil"
+	"log"
+	"net/http"
+
+	"github.com/Afomiat/AI_weight_loss/backend/config"
 )
 
 type CalorieInfo struct {

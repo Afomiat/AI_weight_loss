@@ -1,10 +1,11 @@
 package ai
 
 import (
-    "net/http"
-    "io/ioutil"
-    "log"
-    "github.com/Afomiat/AI_weight_loss/backend/config"
+	"io/ioutil"
+	"log"
+	"net/http"
+
+	"github.com/Afomiat/AI_weight_loss/backend/config"
 )
 
 func GetFitnessAdvice() (string, error) {

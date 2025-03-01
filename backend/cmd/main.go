@@ -1,9 +1,10 @@
 package main
 
 import (
-    "log"
-    "github.com/Afomiat/AI_weight_loss/backend/config"
-    "github.com/Afomiat/AI_weight_loss/backend/delivery/router"
+	"log"
+
+	"github.com/Afomiat/AI_weight_loss/backend/config"
+	"github.com/Afomiat/AI_weight_loss/backend/delivery/router"
 )
 
 func main() {

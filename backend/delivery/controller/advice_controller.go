@@ -1,9 +1,10 @@
 package controller
 
 import (
-    "net/http"
-    "github.com/gin-gonic/gin"
-    "github.com/Afomiat/AI_weight_loss/backend/usecase"
+	"net/http"
+
+	"github.com/Afomiat/AI_weight_loss/backend/usecase"
+	"github.com/gin-gonic/gin"
 )
 
 func GetAdvice(c *gin.Context) {

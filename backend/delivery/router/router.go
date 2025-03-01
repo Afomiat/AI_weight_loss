@@ -1,8 +1,8 @@
 package router
 
 import (
-    "github.com/gin-gonic/gin"
-    "github.com/Afomiat/AI_weight_loss/backend/delivery/controller"
+	"github.com/Afomiat/AI_weight_loss/backend/delivery/controller"
+	"github.com/gin-gonic/gin"
 )
 
 func SetupRouter() *gin.Engine {
