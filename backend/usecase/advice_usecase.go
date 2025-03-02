@@ -1,9 +1,13 @@
 package usecase
 
-import (
-    "github.com/Afomiat/AI_weight_loss/backend/internal/ai"
-)
+import "github.com/Afomiat/AI_weight_loss/backend/internal/ai"
 
-func GetAdvice() (string, error) {
-    return ai.GetFitnessAdvice()
+type ExerciseUsecase struct{}
+
+func NewExerciseUsecase() *ExerciseUsecase {
+	return &ExerciseUsecase{}
+}
+
+func (uc *ExerciseUsecase) GetRecommendation(goal string) (string, error) {
+	return ai.GetExerciseRecommendation(goal)
 }

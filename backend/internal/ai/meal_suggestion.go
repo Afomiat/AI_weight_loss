@@ -3,6 +3,7 @@ package ai
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -12,25 +13,6 @@ import (
 	"github.com/Afomiat/AI_weight_loss/backend/domain"
 )
 
-type SpoonacularMealSuggestion struct {
-	Meals []struct {
-		ID    int    `json:"id"`
-		Title string `json:"title"`
-	} `json:"meals"`
-}
-
-type SpoonacularRecipeInformation struct {
-	ExtendedIngredients []struct {
-		Name string  `json:"name"`
-	} `json:"extendedIngredients"`
-}
-
-type CalorieNinjaResponse struct {
-	Items []struct {
-		Name     string  `json:"name"`
-		Calories float64 `json:"calories"`
-	} `json:"items"`
-}
 
 func GetMealSuggestion(calorieLimit int) ([]domain.Meal, error) {
 	
@@ -55,7 +37,7 @@ func GetMealSuggestion(calorieLimit int) ([]domain.Meal, error) {
 		return nil, errors.New("failed to fetch meal suggestions from Spoonacular API")
 	}
 
-	var spoonacularResponse SpoonacularMealSuggestion
+	var spoonacularResponse domain.SpoonacularMealSuggestion
 	spoonacularBody, _ := ioutil.ReadAll(spoonacularRes.Body)
 	err = json.Unmarshal(spoonacularBody, &spoonacularResponse)
 	if err != nil {
@@ -90,7 +72,7 @@ func GetMealSuggestion(calorieLimit int) ([]domain.Meal, error) {
 			continue 
 		}
 
-		var recipeInformation SpoonacularRecipeInformation
+		var recipeInformation domain.SpoonacularRecipeInformation
 		recipeBody, _ := ioutil.ReadAll(recipeRes.Body)
 		err = json.Unmarshal(recipeBody, &recipeInformation)
 		if err != nil {
@@ -117,7 +99,7 @@ func GetMealSuggestion(calorieLimit int) ([]domain.Meal, error) {
 				continue
 			}
 
-			var calorieNinjaResponse CalorieNinjaResponse
+			var calorieNinjaResponse domain.CalorieNinjaResponse
 			calorieNinjaBody, _ := ioutil.ReadAll(calorieNinjaRes.Body)
 			err = json.Unmarshal(calorieNinjaBody, &calorieNinjaResponse)
 			if err != nil {
@@ -125,6 +107,7 @@ func GetMealSuggestion(calorieLimit int) ([]domain.Meal, error) {
 				continue 
 			}
 
+            fmt.Print(calorieNinjaResponse, "calorieNinjaResponse")
 			if len(calorieNinjaResponse.Items) == 0 {
 				log.Printf("No calorie data found for ingredient: %s\n", ingredient.Name)
 				continue
@@ -143,9 +126,9 @@ func GetMealSuggestion(calorieLimit int) ([]domain.Meal, error) {
 		})
 		totalCalories += mealCalories
 
-		if len(meals) >= 3 { 
-			break
-		}
+		// if len(meals) >= 3 { 
+		// 	break
+		// }
 	}
 
 	if len(meals) == 0 {

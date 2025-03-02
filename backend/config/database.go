@@ -10,7 +10,7 @@ import (
 
 var DB *mongo.Database
 
-func ConnectDatabase() {
+func ConnectDatabase() (*mongo.Client) {
     client, err := mongo.NewClient(options.Client().ApplyURI(GetEnv("MONGO_URI")))
     if err != nil {
         log.Fatalf("Error creating MongoDB client: %v\n", err)
@@ -24,5 +24,7 @@ func ConnectDatabase() {
     }
 
     DB = client.Database(GetEnv("Ai_weight_loss"))
+
     log.Println("Connected to MongoDB!")
+    return client
 }
