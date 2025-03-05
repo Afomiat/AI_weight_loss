@@ -19,8 +19,8 @@ type CalorieInfo struct {
     } `json:"items"`
 }
 
-func GetCalorieInfo(food string) (CalorieInfo, error) {
-    apiKey := config.GetEnv("CALORIE_NINJAS_API_KEY")
+func GetCalorieInfo(env *config.Env, food string) (CalorieInfo, error) {
+    apiKey := env.CalorieNinjasAPIKey 
     url := "https://api.calorieninjas.com/v1/nutrition?query=" + food
 
     req, _ := http.NewRequest("GET", url, nil)
@@ -28,10 +28,15 @@ func GetCalorieInfo(food string) (CalorieInfo, error) {
 
     res, err := http.DefaultClient.Do(req)
     if err != nil {
-        log.Fatalf("Request failed: %v\n", err)
+        log.Printf("Request failed: %v\n", err)
+        return CalorieInfo{}, err
     }
     defer res.Body.Close()
-    body, _ := ioutil.ReadAll(res.Body)
+
+    body, err := ioutil.ReadAll(res.Body)
+    if err != nil {
+        return CalorieInfo{}, err
+    }
 
     var calorieInfo CalorieInfo
     err = json.Unmarshal(body, &calorieInfo)

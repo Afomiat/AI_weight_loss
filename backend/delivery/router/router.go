@@ -1,21 +1,20 @@
 package router
 
 import (
-	"github.com/Afomiat/AI_weight_loss/backend/delivery/controller"
-	"github.com/Afomiat/AI_weight_loss/backend/usecase"
+	"time"
+
+	"github.com/Afomiat/AI_weight_loss/backend/config"
 	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func SetupRouter() *gin.Engine {
-    r := gin.Default()
+func SetupRouter(env *config.Env, db *mongo.Database) *gin.Engine {
+	r := gin.Default()
 
-    exerciseUsecase := usecase.NewExerciseUsecase()
-    exerciseController := controller.NewExerciseController(exerciseUsecase)
+	api := r.Group("/api") 
 
-    r.GET("/meals", controller.GetMeals)
-    r.GET("/meal-suggestion", controller.GetMealSuggestion)
-    r.GET("/calories", controller.GetCalorieInfo)
-    r.POST("/exercise-recommendations", exerciseController.GetExerciseRecommendations)
+	MealRoute(env, api)           
+	NewUserInfoRouter(env, 10*time.Second, db, api) 
 
-    return r
+	return r
 }

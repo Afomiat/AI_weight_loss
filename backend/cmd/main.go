@@ -8,11 +8,18 @@ import (
 )
 
 func main() {
-    config.LoadEnv()
-    config.ConnectDatabase()
+    env := config.LoadEnv() // Load environment variables
 
-    r := router.SetupRouter()
-    if err := r.Run(":" + config.GetEnv("SERVER_PORT")); err != nil {
+    dbClient, err := config.ConnectDatabase(env) // Connect to MongoDB
+    if err != nil {
+        log.Fatalf("Could not connect to database: %v\n", err)
+    }
+
+    db := dbClient.Database(env.DBName) // Get the database instance
+
+    r := router.SetupRouter(env, db) // Pass `db` correctly
+    if err := r.Run(":" + env.ServerPort); err != nil {
         log.Fatalf("Could not start server: %v\n", err)
     }
 }
+

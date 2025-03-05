@@ -5,7 +5,6 @@ import (
     "github.com/Afomiat/AI_weight_loss/backend/config"
     "github.com/Afomiat/AI_weight_loss/backend/domain"
     "go.mongodb.org/mongo-driver/bson"
-    "go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func GetMeals() ([]domain.Meal, error) {
@@ -29,7 +28,7 @@ func GetMeals() ([]domain.Meal, error) {
 
 func AddMeal(meal domain.Meal) error {
     collection := config.DB.Collection("meals")
-    meal.ID = primitive.NewObjectID().Hex()
+    // meal. = primitive.NewObjectID().Hex()
     _, err := collection.InsertOne(context.Background(), meal)
     return err
 }
