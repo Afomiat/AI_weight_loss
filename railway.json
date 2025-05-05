@@ -1,7 +1,7 @@
 {
-    "build": {
-      "command": "cd backend/cmd && go build -o /app/server",
-      "installCommand": "cd backend && go mod download"
-    },
-    "startCommand": "/app/server"
-  }
+  "build": {
+    "command": "cd backend && go build -o /app/server ./cmd",
+    "installCommand": "cd backend && go mod download"
+  },
+  "startCommand": "/app/server"
+}
