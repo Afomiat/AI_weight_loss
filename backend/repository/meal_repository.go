@@ -32,3 +32,8 @@ func AddMeal(meal domain.Meal) error {
     _, err := collection.InsertOne(context.Background(), meal)
     return err
 }
+func AddExercise(exercise domain.Exercise) error {
+	collection := config.DB.Collection("exercises")
+	_, err := collection.InsertOne(context.Background(), exercise)
+	return err
+}
