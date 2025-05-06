@@ -3,7 +3,7 @@ package router
 import (
 	"time"
 
-	"github.com/Afomiat/AI_weight_loss/backend/config"
+	"github.com/Afomiat/AI_weight_loss/config"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
 )

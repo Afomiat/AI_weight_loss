@@ -3,10 +3,10 @@ package router
 import (
 	"time"
 
-	"github.com/Afomiat/AI_weight_loss/backend/config"
-	"github.com/Afomiat/AI_weight_loss/backend/delivery/controller"
-	"github.com/Afomiat/AI_weight_loss/backend/repository"
-	"github.com/Afomiat/AI_weight_loss/backend/usecase"
+	"github.com/Afomiat/AI_weight_loss/config"
+	"github.com/Afomiat/AI_weight_loss/delivery/controller"
+	"github.com/Afomiat/AI_weight_loss/repository"
+	"github.com/Afomiat/AI_weight_loss/usecase"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
 )

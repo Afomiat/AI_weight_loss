@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Afomiat/AI_weight_loss/backend/config"
+	"github.com/Afomiat/AI_weight_loss/config"
 )
 
 type CalorieInfo struct {

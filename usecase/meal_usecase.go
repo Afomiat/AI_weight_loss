@@ -1,10 +1,10 @@
 package usecase
 
 import (
-	"github.com/Afomiat/AI_weight_loss/backend/config"
-	"github.com/Afomiat/AI_weight_loss/backend/domain"
-	"github.com/Afomiat/AI_weight_loss/backend/internal/ai"
-	"github.com/Afomiat/AI_weight_loss/backend/repository"
+	"github.com/Afomiat/AI_weight_loss/config"
+	"github.com/Afomiat/AI_weight_loss/domain"
+	"github.com/Afomiat/AI_weight_loss/internal/ai"
+	"github.com/Afomiat/AI_weight_loss/repository"
 )
 
 func GetMeals() ([]domain.Meal, error) {

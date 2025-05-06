@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/Afomiat/AI_weight_loss/backend/domain"
+	"github.com/Afomiat/AI_weight_loss/domain"
 )
 
 

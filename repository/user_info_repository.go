@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/Afomiat/AI_weight_loss/backend/domain"
+	"github.com/Afomiat/AI_weight_loss/domain"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"

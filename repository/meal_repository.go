@@ -2,8 +2,8 @@ package repository
 
 import (
     "context"
-    "github.com/Afomiat/AI_weight_loss/backend/config"
-    "github.com/Afomiat/AI_weight_loss/backend/domain"
+    "github.com/Afomiat/AI_weight_loss/config"
+    "github.com/Afomiat/AI_weight_loss/domain"
     "go.mongodb.org/mongo-driver/bson"
 )
 

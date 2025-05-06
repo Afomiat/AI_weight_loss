@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/Afomiat/AI_weight_loss/backend/config"
-	"github.com/Afomiat/AI_weight_loss/backend/usecase"
+	"github.com/Afomiat/AI_weight_loss/config"
+	"github.com/Afomiat/AI_weight_loss/usecase"
 	"github.com/gin-gonic/gin"
 )
 

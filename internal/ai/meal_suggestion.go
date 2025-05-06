@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/Afomiat/AI_weight_loss/backend/config"
-	"github.com/Afomiat/AI_weight_loss/backend/domain"
+	"github.com/Afomiat/AI_weight_loss/config"
+	"github.com/Afomiat/AI_weight_loss/domain"
 )
 
 func GetMealSuggestion(env *config.Env, calorieLimit int) ([]domain.Meal, error) {
