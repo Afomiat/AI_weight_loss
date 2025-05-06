@@ -8,8 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func SetupRouter(env *config.Env, db *mongo.Database) *gin.Engine {
-	r := gin.Default()
+func SetupRouter(r *gin.Engine, env *config.Env, db *mongo.Database) *gin.Engine {
 
 	api := r.Group("/api") 
 
